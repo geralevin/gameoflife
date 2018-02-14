@@ -13,10 +13,9 @@ public final class GameField {
     private final Collection<Coordinate> lifeCells;
 
     /**
-     *
      * @param lifeCells collection of life cells
-     * @param rows - rows of the field
-     * @param cols - columns of the field
+     * @param rows      - rows of the field
+     * @param cols      - columns of the field
      */
     public GameField(Collection<Coordinate> lifeCells, int rows, int cols) {
         checkNotNull(lifeCells);
@@ -28,22 +27,43 @@ public final class GameField {
     }
 
 
+    /**
+     * Get game field in 2d representation
+     *
+     * @return 2D representation of the game field
+     */
     public boolean[][] getGameField() {
         return gameField;
     }
 
+    /**
+     * Returns collection of the life cells on the field
+     *
+     * @return collection of life cells coordinate
+     */
     public Collection<Coordinate> getLifeCells() {
         return lifeCells;
     }
 
+    /**
+     * @return row count of the field
+     */
     public int getRows() {
         return gameField.length;
     }
 
+    /**
+     * @return column count of the field
+     */
     public int getCols() {
         return gameField[0].length;
     }
 
+    /**
+     * Convers field into .* format, where * is alive cell and . is the dead cell
+     *
+     * @return dot-star representation of the field
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(gameField.length * gameField[0].length + gameField.length);
