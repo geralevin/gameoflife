@@ -38,10 +38,10 @@ public final class GameOfLife {
         //rule to be used on a dead cell, whether it needs to be resurected
         Predicate<Coordinate> becomeAliveRule = c -> lifeNeighboursCount(field.getGameField(), c.getRow(), c.getCol()) == 3;
 
-        //apply die rule and see who is still alive after it
+        //in parallel apply die rule and see who is still alive after the rule is applied
         Set<Coordinate> liveCells = field.getLifeCells().parallelStream().filter(dieRule).collect(Collectors.toSet());
 
-        //apply resurrect rule on dead neighbors of life cells and get set of resurrected cells
+        //in parallel apply resurrect rule on dead neighbors of a life cells and get set of resurrected cells
         Set<Coordinate> resurrectedCells = field.getLifeCells().parallelStream().map(coordinate -> {
             boolean[][] area = field.getGameField();
             Collection<Coordinate> deadCells = new LinkedList<>();
